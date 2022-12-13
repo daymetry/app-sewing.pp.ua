@@ -8,13 +8,16 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import {StorageComponent} from '../../storage/storage.component';
+import {MaterialComponent} from '../../material/material.component';
+import {ProductsComponent} from '../../products/products.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
     //   children: [ {
     //     path: 'dashboard',
-    //     component: DashboardComponent
+    //     component: StorageComponent
     // }]}, {
     // path: '',
     // children: [ {
@@ -53,6 +56,9 @@ export const AdminLayoutRoutes: Routes = [
     //     }]
     // }
     { path: 'dashboard',      component: DashboardComponent },
+    { path: 'storage',   component: StorageComponent },
+    { path: 'material',   component: MaterialComponent },
+    { path: 'products',   component: ProductsComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
