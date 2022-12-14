@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {StorageComponent} from '../../storage/storage.component';
 import {ProductsComponent} from '../../products/products.component';
 import {MaterialComponent} from '../../material/material.component';
+import {ReportsComponent} from '../../reports/reports.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import {MaterialComponent} from '../../material/material.component';
   declarations: [
     DashboardComponent,
     StorageComponent,
+    ReportsComponent,
     ProductsComponent,
     MaterialComponent,
     UserProfileComponent,

@@ -2,48 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-reports',
+  templateUrl: './reports.component.html',
+  styleUrls: ['./reports.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class ReportsComponent implements OnInit {
 
-    public notes = {
-        all: [
-            'Добавить нового пользывателя',
-            'Прием материала',
-            'Перезвонить на склад №2',
-            'Должны перезвонить',
-        ],
-        storage: [
-            'Проверить отчет',
-            'Добавить нового пользывателя',
-        ],
-        work: [
-            'Прием материала',
-            'Перезвонить на склад №2',
-            'Должны перезвонить',
-        ]
-    }
   constructor() { }
-
-
-    delAll(item: any) {
-        this.notes.all = this.notes.all.filter((res: any) => {
-            return res !== item
-        });
-    }
-    delStorage(item: any) {
-        this.notes.storage = this.notes.storage.filter((res: any) => {
-            return res !== item
-        });
-    }
-    delWork(item: any) {
-        this.notes.work = this.notes.work.filter((res: any) => {
-            return res !== item
-        });
-    }
-
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -101,6 +66,8 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+
+      console.log(1111)
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {

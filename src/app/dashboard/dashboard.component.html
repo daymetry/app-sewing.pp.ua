@@ -127,23 +127,23 @@
                   <div class="card-header card-header-tabs card-header-primary">
                       <div class="nav-tabs-navigation">
                           <div class="nav-tabs-wrapper">
-                              <span class="nav-tabs-title">Tasks:</span>
+                              <span class="nav-tabs-title">Задачник:</span>
                               <ul class="nav nav-tabs" data-tabs="tabs">
                                   <li class="nav-item">
                                       <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
-                                          <i class="material-icons">bug_report</i> Bugs
+                                          <i class="material-icons">widgets</i> Общее
                                           <div class="ripple-container"></div>
                                       </a>
                                   </li>
                                   <li class="nav-item">
                                       <a mat-button class="nav-link" href="#messages" data-toggle="tab">
-                                          <i class="material-icons">code</i> Website
+                                          <i class="material-icons">border_color</i> Склад
                                           <div class="ripple-container"></div>
                                       </a>
                                   </li>
                                   <li class="nav-item">
                                       <a mat-button class="nav-link" href="#settings" data-toggle="tab">
-                                          <i class="material-icons">cloud</i> Server
+                                          <i class="material-icons">cloud</i> Работа
                                           <div class="ripple-container"></div>
                                       </a>
                                   </li>
@@ -156,7 +156,7 @@
                           <div class="tab-pane active" id="profile">
                               <table class="table">
                                   <tbody>
-                                      <tr>
+                                      <tr *ngFor="let item of notes.all">
                                           <td>
                                               <div class="form-check">
                                                   <label class="form-check-label">
@@ -167,77 +167,10 @@
                                                   </label>
                                               </div>
                                           </td>
-                                          <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                          <td>{{item}}</td>
                                           <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="">
-                                                      <span class="form-check-sign">
-                                                          <span class="check"></span>
-                                                      </span>
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                          <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="">
-                                                      <span class="form-check-sign">
-                                                          <span class="check"></span>
-                                                      </span>
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                          </td>
-                                          <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="" checked>
-                                                      <span class="form-check-sign">
-                                                          <span class="check"></span>
-                                                      </span>
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                          <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
+                                              <button mat-raised-button type="button" matTooltip="Удалить" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons"  (click)="delAll(item)">close</i>
                                               </button>
                                           </td>
                                       </tr>
@@ -247,7 +180,7 @@
                           <div class="tab-pane" id="messages">
                               <table class="table">
                                   <tbody>
-                                      <tr>
+                                      <tr *ngFor="let item of notes.storage">
                                           <td>
                                               <div class="form-check">
                                                   <label class="form-check-label">
@@ -258,35 +191,10 @@
                                                   </label>
                                               </div>
                                           </td>
-                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                          </td>
+                                          <td>{{item}}</td>
                                           <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="">
-                                                      <span class="form-check-sign">
-                                                          <span class="check"></span>
-                                                      </span>
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                          <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
+                                              <button mat-raised-button type="button" matTooltip="Удалить" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons" (click)="delStorage(item)">close</i>
                                               </button>
                                           </td>
                                       </tr>
@@ -296,7 +204,7 @@
                           <div class="tab-pane" id="settings">
                               <table class="table">
                                   <tbody>
-                                      <tr>
+                                      <tr *ngFor="let item of notes.work">
                                           <td>
                                               <div class="form-check">
                                                   <label class="form-check-label">
@@ -307,56 +215,10 @@
                                                   </label>
                                               </div>
                                           </td>
-                                          <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                          <td>{{item}}</td>
                                           <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="" checked>
-                                                      <span class="form-check-sign">
-                                                          <span class="check"></span>
-                                                      </span>
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                          </td>
-                                          <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
-                                              </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>
-                                              <div class="form-check">
-                                                  <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="" checked>
-                                                      <span class="form-check-sign">
-                                                          <span class="check"></span>
-                                                      </span>
-                                                  </label>
-                                              </div>
-                                          </td>
-                                          <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                          <td class="td-actions text-right">
-                                              <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">edit</i>
-                                              </button>
-                                              <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons">close</i>
+                                              <button mat-raised-button type="button" matTooltip="Удалить" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                                                  <i class="material-icons" (click)="delWork(item)">close</i>
                                               </button>
                                           </td>
                                       </tr>
@@ -370,41 +232,35 @@
           <div class="col-lg-6 col-md-12">
               <div class="card">
                   <div class="card-header card-header-warning">
-                      <h4 class="card-title">Employees Stats</h4>
-                      <p class="card-category">New employees on 15th September, 2016</p>
+                      <h4 class="card-title">Сообщения</h4>
                   </div>
                   <div class="card-body table-responsive">
                       <table class="table table-hover">
                           <thead class="text-warning">
-                              <th>ID</th>
-                              <th>Name</th>
-                              <th>Salary</th>
-                              <th>Country</th>
+                              <th>Заглавие</th>
+                              <th>Сообщение</th>
+                              <th>Ссылка</th>
                           </thead>
                           <tbody>
                               <tr>
-                                  <td>1</td>
-                                  <td>Dakota Rice</td>
-                                  <td>$36,738</td>
-                                  <td>Niger</td>
+                                  <td>Склад #1 материал меньше нуля</td>
+                                  <td>Просмотрите отчет за 01-01-2023</td>
+                                  <td>  <button [routerLink]="'/reports'" mat-raised-button color="accent">Перейти к отчетам</button></td>
                               </tr>
                               <tr>
-                                  <td>2</td>
-                                  <td>Minerva Hooper</td>
-                                  <td>$23,789</td>
-                                  <td>Curaçao</td>
+                                  <td>Склад #1 материал меньше нуля</td>
+                                  <td>Просмотрите отчет за 01-01-2023 до 05-01-2023</td>
+                                  <td><button [routerLink]="'/reports'" mat-raised-button color="accent">Перейти к отчетам</button></td>
                               </tr>
                               <tr>
-                                  <td>3</td>
-                                  <td>Sage Rodriguez</td>
-                                  <td>$56,142</td>
-                                  <td>Netherlands</td>
+                                  <td>Склад #2 материал меньше нуля</td>
+                                  <td>Просмотрите отчет за 01-02-2023</td>
+                                  <td><button [routerLink]="'/reports'" mat-raised-button color="accent">Перейти к отчетам</button></td>
                               </tr>
                               <tr>
-                                  <td>4</td>
-                                  <td>Philip Chaney</td>
-                                  <td>$38,735</td>
-                                  <td>Korea, South</td>
+                                  <td>Склад #1 материал меньше нуля</td>
+                                  <td>Просмотрите отчет за 01-02-2023</td>
+                                  <td><button [routerLink]="'/reports'" mat-raised-button color="accent">Перейти к отчетам</button></td>
                               </tr>
                           </tbody>
                       </table>
