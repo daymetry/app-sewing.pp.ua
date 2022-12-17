@@ -8,6 +8,140 @@ import * as Chartist from 'chartist';
 })
 export class MaterialComponent implements OnInit {
 
+    public materials: any[] = [
+        {
+            id: 5364,
+            name: 'Полушерсть',
+            color: 'Чёрный',
+            weight: 23
+        },
+        {
+            id: 7578,
+            name: 'Шерсть',
+            color: 'Чёрный',
+            weight: 43
+        },
+        {
+            id: 7534,
+            name: 'Кашемир 100%',
+            color: 'Чёрный',
+            weight: 65
+        },
+        {
+            id: 6457,
+            name: 'Кашемир 30%/70%',
+            color: 'Чёрный',
+            weight: 87
+        },
+        {
+            id: 5324,
+            name: 'Кашемир 50%/50%',
+            color: 'Чёрный',
+            weight: 76
+        },
+        {
+            id: 2346,
+            name: 'Хлопок',
+            color: 'Чёрный',
+            weight: 33
+        },
+        {
+            id: 8666,
+            name: 'Вискоза',
+            color: 'Чёрный',
+            weight: 43
+        },
+        {
+            id: 6578,
+            name: 'Люрекс',
+            color: 'Чёрный',
+            weight: 86
+        },
+        {
+            id: 3456,
+            name: 'Стрейч',
+            color: 'Чёрный',
+            weight: 86
+        },
+        {
+            id: 3567,
+            name: 'Хлопок / вискоза',
+            color: 'Чёрный',
+            weight: 34
+        },
+        {
+            id: 8788,
+            name: 'Хлопок / акрил',
+            color: 'Чёрный',
+            weight: 76
+        },
+        {
+            id: 2346,
+            name: 'Полушерсть',
+            color: 'Чёрный',
+            weight: 23
+        },
+        {
+            id: 8675,
+            name: 'Шерсть',
+            color: 'Чёрный',
+            weight: 43
+        },
+        {
+            id: 3468,
+            name: 'Кашемир 100%',
+            color: 'Чёрный',
+            weight: 65
+        },
+        {
+            id: 7589,
+            name: 'Кашемир 30%/70%',
+            color: 'Чёрный',
+            weight: 87
+        },
+        {
+            id: 3467,
+            name: 'Кашемир 50%/50%',
+            color: 'Чёрный',
+            weight: 76
+        },
+        {
+            id: 3567,
+            name: 'Хлопок',
+            color: 'Чёрный',
+            weight: 33
+        },
+        {
+            id: 2357,
+            name: 'Вискоза',
+            color: 'Хаки',
+            weight: 43
+        },
+        {
+            id: 1235,
+            name: 'Люрекс',
+            color: 'Розовий',
+            weight: 86
+        },
+        {
+            id: 8964,
+            name: 'Стрейч',
+            color: 'Тёмно серый',
+            weight: 86
+        },
+        {
+            id: 6478,
+            name: 'Хлопок / вискоза',
+            color: 'беж',
+            weight: 34
+        },
+        {
+            id: 8567,
+            name: 'Хлопок / акрил',
+            color: 'Молочный',
+            weight: 76
+        }
+    ]
   constructor() { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;

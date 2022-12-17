@@ -133,15 +133,22 @@
                           <thead class="text-warning">
                           <th>Артикуль</th>
                           <th>Название</th>
+                          <th>Цвет</th>
+                          <th>Вес</th>
                           <th style="text-align:right">Меню</th>
                           </thead>
                           <tbody>
-                          <tr>
-                              <td>75456</td>
-                              <td>Клубок</td>
-                              <td style="text-align:right;">
-                                  <button style="margin-right: 5px;" routerLink="'/material/' + {{1}}" mat-raised-button color="accent">Перейти к материалу</button>
-                                  <button routerLink="'/material-edit/' + {{1}}" mat-raised-button color="primary">Редактировать материал</button>
+                          <tr *ngFor="let item of materials">
+                              <td>{{item.id}}</td>
+                              <td>{{item.name}}</td>
+                              <td>{{item.color}}</td>
+                              <td>{{item.weight}} кг</td>
+                              <td style="text-align:right;" class="card-footer-action">
+<!--                                  <button style="margin-right: 5px;" routerLink="'/material/' + {{item.id}}" mat-raised-button color="warning">Перейти к материалу</button>-->
+<!--                                  <button routerLink="'/material-edit/' + {{item.id}}" mat-raised-button color="primary">Редактировать материал</button>-->
+
+                                  <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{item.id}}" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к материалу</button>
+                                  <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage-edit/' + {{item.id}}" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать материал</button>
                               </td>
                           </tr>
                           </tbody>

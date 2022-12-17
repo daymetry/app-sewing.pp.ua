@@ -21,7 +21,7 @@
          <div class="col-lg-9 col-md-6 col-sm-6">
               <div class="card card-stats">
                   <div class="card-header card-header-success">
-                      <div class="ct-chart" id="dailySalesChart"></div>
+                      <div class="ct-chart" id="websiteViewsChart"></div>
                   </div>
                   <div class="card-body">
                       <h4 class="card-title">Сотрудники</h4>
@@ -55,7 +55,11 @@
                                   <td>{{item.id}}</td>
                                   <td>{{item.name}}</td>
                                   <td>{{item.staff}}</td>
-                                  <td style="text-align:right"><button routerLink="'/personal' + {{item.id}}" mat-raised-button color="accent">Перейти в профайл</button></td>
+                                  <td style="text-align:right">
+<!--                                      <button routerLink="'/personal' + {{item.id}}" mat-raised-button color="accent">Перейти в профайл</button>-->
+                                      <button style="    text-align: left;margin-right: 5px;" routerLink="'/personal/' + {{item.id}}" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к профайлу</button>
+
+                                  </td>
                               </tr>
                           </tbody>
                       </table>

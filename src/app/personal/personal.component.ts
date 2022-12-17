@@ -145,7 +145,9 @@ export class PersonalComponent implements OnInit {
           } else {
               this.graff[res.staff] = this.graff[res.staff] + 1;
           }
-      })
+      });
+
+      console.log(this.graff)
 
       const dataDailySalesChart: any = {
           labels: Object.keys(this.graff).map((res: any) => {
@@ -158,19 +160,101 @@ export class PersonalComponent implements OnInit {
           ]
       };
 
+      let chartHigh = 0;
+
+      Object.keys(this.graff).map((res: any) => {
+          return this.graff[res]
+      }).map((res: any) => {
+          if (chartHigh < res) {
+              chartHigh = res;
+          }
+      });
 
      const optionsDailySalesChart: any = {
           lineSmooth: Chartist.Interpolation.cardinal({
               tension: 0
           }),
           low: 0,
-          high: 20, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: chartHigh + 4, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
       }
 
       var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
 
       this.startAnimationForLineChart(dailySalesChart);
+
+      // this.personal.map((res: any) => {
+      //     if (!this.graff[res.name]) {
+      //         this.graff[res.name] = {};
+      //         this.graff[res.name].materials = res.materials;
+      //         this.graff[res.name].products = res.products;
+      //     } else {
+      //         this.graff[res.name] = {};
+      //         this.graff[res.name].materials = this.graff[res.name].materials + res.materials;
+      //         this.graff[res.name].products = this.graff[res.name].products + res.products;
+      //     }
+      // })
+
+      // console.log([
+      //     ...Object.keys(this.graff).map((res: any) => {
+      //         return this.graff[res].materials;
+      //     }),
+      //     ...Object.keys(this.graff).map((res: any) => {
+      //         return this.graff[res].products;
+      //     }),
+      // ])
+
+      // console.log([
+      //     ...Object.keys(this.graff).map((res: any) => {
+      //         return res  + ' материал';
+      //     }),
+      //     ...Object.keys(this.graff).map((res: any) => {
+      //         return res  + ' изделия';
+      //     })
+      // ])
+
+      // const dataDailySalesChart: any = {
+      //     labels:
+      //         [
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return res  + ' материал';
+      //             }),
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return res  + ' изделия';
+      //             })
+      //         ],
+      //     series:
+      //         [
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return this.graff[res].materials;
+      //             }),
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return this.graff[res].products;
+      //             }),
+      //         ]
+      // };
+
+      // const datawebsiteViewsChart: any = {
+      //     labels:
+      //         [
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return res  + ' материал';
+      //             }),
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return res  + ' изделия';
+      //             })
+      //         ],
+      //     series:[
+      //         [
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return this.graff[res].materials;
+      //             }),
+      //             ...Object.keys(this.graff).map((res: any) => {
+      //                 return this.graff[res].products;
+      //             }),
+      //         ]
+      //     ]
+      // };
 
 
       /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
@@ -187,7 +271,7 @@ export class PersonalComponent implements OnInit {
               tension: 0
           }),
           low: 0,
-          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: chartHigh + 4, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
       }
 
@@ -197,13 +281,17 @@ export class PersonalComponent implements OnInit {
       this.startAnimationForLineChart(completedTasksChart);
 
 
-
       /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
       var datawebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+        labels: Object.keys(this.graff).map((res: any) => {
+            return res;
+        }),
         series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+
+                Object.keys(this.graff).map((res: any) => {
+                    return this.graff[res]
+                })
 
         ]
       };
@@ -212,7 +300,7 @@ export class PersonalComponent implements OnInit {
               showGrid: false
           },
           low: 0,
-          high: 1000,
+          high: chartHigh + 4,
           chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
       };
       var responsiveOptions: any[] = [

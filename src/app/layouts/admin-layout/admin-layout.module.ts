@@ -23,6 +23,8 @@ import {MaterialComponent} from '../../material/material.component';
 import {ReportsComponent} from '../../reports/reports.component';
 import {SettingsComponent} from '../../settings/settings.component';
 import {PersonalComponent} from '../../personal/personal.component';
+import {OrdersComponent} from '../../orders/orders.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -36,9 +38,11 @@ import {PersonalComponent} from '../../personal/personal.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatIconModule,
   ],
   declarations: [
     DashboardComponent,
+    OrdersComponent,
     StorageComponent,
     ReportsComponent,
     SettingsComponent,
