@@ -147,12 +147,6 @@ export class PersonalComponent implements OnInit {
           }
       })
 
-      console.log(this.personal)
-      console.log( Object.keys(this.graff).map((res: any) => {
-          return this.graff[res]
-      }))
-
-
       const dataDailySalesChart: any = {
           labels: Object.keys(this.graff).map((res: any) => {
               return res;
@@ -163,8 +157,6 @@ export class PersonalComponent implements OnInit {
               })
           ]
       };
-
-
 
 
      const optionsDailySalesChart: any = {

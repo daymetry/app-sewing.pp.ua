@@ -4,7 +4,7 @@
   border: 0;
   margin-bottom: 30px;
   margin-top: 30px;
-  border-radius: $border-radius-large;
+  border-radius: $border-radius-huge;
   color: $gray-dark;
   background: $white-color;
   width: 100%;
@@ -491,7 +491,7 @@
       }
 
       &:not(.card-header-icon):not(.card-header-text):not(.card-header-image){
-        border-radius: $border-radius-base;
+        border-radius: $border-radius-huge;
         margin-top: -20px;
         padding: 15px;
       }

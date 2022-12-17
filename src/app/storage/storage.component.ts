@@ -8,6 +8,29 @@ import * as Chartist from 'chartist';
 })
 export class StorageComponent implements OnInit {
 
+    public storage: any[] = [
+        {
+            id: 1,
+            name: 'Карпенко И.',
+            materials: 10,
+            products: 89
+        },
+        {
+            id: 2,
+            name: 'Михеев А.',
+            materials: 425,
+            products: 20
+        },
+        {
+            id: 3,
+            name: 'Онуфрий',
+            materials: 242,
+            products: 12
+        }
+    ];
+
+    public graff: any = {}
+
   constructor() { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
@@ -67,22 +90,39 @@ export class StorageComponent implements OnInit {
   };
   ngOnInit() {
 
-      console.log(1111)
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+      this.storage.map((res: any) => {
+          if (!this.graff[res.name]) {
+              this.graff[res.name] = res.materials;
+          } else {
+              this.graff[res.name] = this.graff[res.name] + res.materials;
+          }
+      })
 
       const dataDailySalesChart: any = {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+          labels: Object.keys(this.graff).map((res: any) => {
+              return res;
+          }),
           series: [
-              [12, 17, 7, 17, 23, 18, 38]
+              Object.keys(this.graff).map((res: any) => {
+                  return this.graff[res]
+              })
           ]
       };
+      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+
+      // const dataDailySalesChart: any = {
+      //     labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+      //     series: [
+      //         [12, 17, 7, 17, 23, 18, 38]
+      //     ]
+      // };
 
      const optionsDailySalesChart: any = {
           lineSmooth: Chartist.Interpolation.cardinal({
               tension: 0
           }),
           low: 0,
-          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: 500, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
       }
 
