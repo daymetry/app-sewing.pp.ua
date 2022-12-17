@@ -12,6 +12,8 @@ import {StorageComponent} from '../../storage/storage.component';
 import {MaterialComponent} from '../../material/material.component';
 import {ProductsComponent} from '../../products/products.component';
 import {ReportsComponent} from '../../reports/reports.component';
+import {SettingsComponent} from '../../settings/settings.component';
+import {PersonalComponent} from '../../personal/personal.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -59,6 +61,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'storage',   component: StorageComponent },
     { path: 'reports',   component: ReportsComponent },
+    { path: 'settings',   component: SettingsComponent },
+    { path: 'personal',   component: PersonalComponent },
     { path: 'material',   component: MaterialComponent },
     { path: 'products',   component: ProductsComponent },
     { path: 'user-profile',   component: UserProfileComponent },

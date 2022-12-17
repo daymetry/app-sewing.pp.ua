@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 
 @Component({
-  selector: 'app-material',
-  templateUrl: './material.component.html',
-  styleUrls: ['./material.component.css']
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.css']
 })
-export class MaterialComponent implements OnInit {
+export class SettingsComponent implements OnInit {
 
   constructor() { }
   startAnimationForLineChart(chart){
@@ -66,6 +66,8 @@ export class MaterialComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+
+      console.log(1111)
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {

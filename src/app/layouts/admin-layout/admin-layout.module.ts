@@ -21,6 +21,8 @@ import {StorageComponent} from '../../storage/storage.component';
 import {ProductsComponent} from '../../products/products.component';
 import {MaterialComponent} from '../../material/material.component';
 import {ReportsComponent} from '../../reports/reports.component';
+import {SettingsComponent} from '../../settings/settings.component';
+import {PersonalComponent} from '../../personal/personal.component';
 
 @NgModule({
   imports: [
@@ -39,6 +41,8 @@ import {ReportsComponent} from '../../reports/reports.component';
     DashboardComponent,
     StorageComponent,
     ReportsComponent,
+    SettingsComponent,
+    PersonalComponent,
     ProductsComponent,
     MaterialComponent,
     UserProfileComponent,

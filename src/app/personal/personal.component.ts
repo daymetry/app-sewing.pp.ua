@@ -2,12 +2,82 @@ import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 
 @Component({
-  selector: 'app-material',
-  templateUrl: './material.component.html',
-  styleUrls: ['./material.component.css']
+  selector: 'app-personal',
+  templateUrl: './personal.component.html',
+  styleUrls: ['./personal.component.css']
 })
-export class MaterialComponent implements OnInit {
+export class PersonalComponent implements OnInit {
 
+
+  public personal: any[] = [
+      {
+          id: 1,
+       name: 'Александрова Т.С',
+       staff: 'Директор'
+      },
+      {
+          id: 2,
+          name: 'Кучма А.',
+          staff: 'Бухалтер'
+      },
+      {
+          id: 3,
+          name: 'Александров В.',
+          staff: 'Разнорабочий'
+      },
+      {
+          id: 4,
+          name: 'Бирса Н.',
+          staff: 'Глажка'
+      },
+      {
+          id: 5,
+          name: 'Ругно В.',
+          staff: 'Наладчик'
+      },
+      {
+          id: 6,
+          name: 'Опенько Т.',
+          staff: 'Вязальщик'
+      },
+      {
+          id: 7,
+          name: 'Охряченко С.',
+          staff: 'Вязальщик'
+      },
+      {
+          id: 8,
+          name: 'Костенко Л.',
+          staff: 'Вязальщик'
+      },
+      {
+          id: 9,
+          name: 'Лазука Л.',
+          staff: 'Вязальщик'
+      },
+      {
+          id: 10,
+          name: 'Пичугина Т.',
+          staff: 'Вязальщик'
+      },
+      {
+          id: 11,
+          name: 'Литвинов А.',
+          staff: 'Швеи'
+      },
+      {
+          id: 12,
+          name: 'Шабайкина Н.',
+          staff: 'Швеи'
+      },
+      {
+          id: 13,
+          name: 'Диденко О.',
+          staff: 'Швеи'
+      },
+  ];
+
+  public graff: any = {}
   constructor() { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
@@ -68,19 +138,41 @@ export class MaterialComponent implements OnInit {
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
+
+      this.personal.map((res: any) => {
+          if (!this.graff[res.staff]) {
+              this.graff[res.staff] = 1;
+          } else {
+              this.graff[res.staff] = this.graff[res.staff] + 1;
+          }
+      })
+
+      console.log(this.personal)
+      console.log( Object.keys(this.graff).map((res: any) => {
+          return this.graff[res]
+      }))
+
+
       const dataDailySalesChart: any = {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+          labels: Object.keys(this.graff).map((res: any) => {
+              return res;
+          }),
           series: [
-              [12, 17, 7, 17, 23, 18, 38]
+              Object.keys(this.graff).map((res: any) => {
+                  return this.graff[res]
+              })
           ]
       };
+
+
+
 
      const optionsDailySalesChart: any = {
           lineSmooth: Chartist.Interpolation.cardinal({
               tension: 0
           }),
           low: 0,
-          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          high: 20, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
       }
 
