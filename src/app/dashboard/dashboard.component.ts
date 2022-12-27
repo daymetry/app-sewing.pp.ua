@@ -1,12 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-
+import {ModalAddTask} from './modal/add-task';
+import {DashboardService} from './service/dashboard.service';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+
+    public item: any = {
+        taskList: {
+            all: [],
+            storage: [],
+            work: [],
+        },
+        notificationList: []
+    }
 
     public notes = {
         all: [
@@ -25,7 +37,22 @@ export class DashboardComponent implements OnInit {
             'Должны перезвонить',
         ]
     }
-  constructor() { }
+  constructor(public dialog: MatDialog, private dashboardService: DashboardService) { }
+
+    openDialog(): void {
+
+        const dialogRef = this.dialog.open(ModalAddTask, {
+            data: {},
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+
+            this.getTasks();
+        });
+
+    }
+
 
 
     delAll(item: any) {
@@ -44,7 +71,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-  startAnimationForLineChart(chart){
+  startAnimationForLineChart(chart) {
       let seq: any, delays: any, durations: any;
       seq = 0;
       delays = 80;
@@ -77,7 +104,8 @@ export class DashboardComponent implements OnInit {
 
       seq = 0;
   };
-  startAnimationForBarChart(chart){
+
+  startAnimationForBarChart(chart) {
       let seq2: any, delays2: any, durations2: any;
 
       seq2 = 0;
@@ -100,7 +128,15 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+
   ngOnInit() {
+
+      this.getTasks();
+
+
+
+
+
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {
@@ -181,5 +217,37 @@ export class DashboardComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+
+  getTasks() {
+        this.dashboardService.getTasks().subscribe({
+            next: data => {
+                console.log(data)
+
+                this.item.taskList.all = [];
+                this.item.taskList.storage = [];
+                this.item.taskList.work = [];
+
+
+                // @ts-ignore
+                for (const item of data) {
+                    // tslint:disable-next-line:triple-equals
+                    if (item.type == 0) {
+                        this.item.taskList.all.push(item);
+                        // tslint:disable-next-line:triple-equals
+                    } else if (item.type == 1) {
+                        this.item.taskList.storage.push(item);
+                        // tslint:disable-next-line:triple-equals
+                    } else if (item.type == 2) {
+                        this.item.taskList.work.push(item);
+                    }
+                }
+
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+  }
+
 
 }

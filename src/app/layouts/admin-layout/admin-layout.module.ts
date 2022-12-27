@@ -25,6 +25,25 @@ import {SettingsComponent} from '../../settings/settings.component';
 import {PersonalComponent} from '../../personal/personal.component';
 import {OrdersComponent} from '../../orders/orders.component';
 import {MatIconModule} from '@angular/material/icon';
+import {ReportsSalaryComponent} from '../../reports-salary/reports-salary.component';
+import {ReportsRentComponent} from '../../reports-rent/reports-rent.component';
+import {ReportsTransferComponent} from '../../reports-transfer/reports-transfer.component';
+import {ReportsGetingComponent} from '../../reports-geting/reports-geting.component';
+import {ReportsProductsComponent} from '../../reports-products/reports-products.component';
+import {ReportsMaterialsComponent} from '../../reports-materials/reports-materials.component';
+import {SettingsColorsComponent} from '../../settings-colors/settings-colors.component';
+import {SettingsPersonalComponent} from '../../settings-personal/settings-personal.component';
+import {PersonalRecordComponent} from '../../personal-record/personal-record.component';
+import {ProductsRecordComponent} from '../../products-record/products-record.component';
+import {MaterialRecordComponent} from '../../material-record/material-record.component';
+import {StorageRecordComponent} from '../../storage-record/storage-record.component';
+import {StorageAddComponent} from '../../storage-add/storage-add.component';
+import {StorageGetingComponent} from '../../storage-geting/storage-geting.component';
+import {StorageTransferComponent} from '../../storage-transfer/storage-transfer.component';
+import {OrdersRecordComponent} from '../../orders-record/orders-record.component';
+import {SettingsPositionComponent} from '../../settings-position/settings-position.component';
+import {ModalAddTask} from '../../dashboard/modal/add-task';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -39,14 +58,33 @@ import {MatIconModule} from '@angular/material/icon';
     MatSelectModule,
     MatTooltipModule,
     MatIconModule,
+    MatDialogModule,
   ],
   declarations: [
     DashboardComponent,
+    ModalAddTask,
     OrdersComponent,
     StorageComponent,
     ReportsComponent,
+    ReportsSalaryComponent,
+    ReportsRentComponent,
+    MaterialRecordComponent,
+    ProductsRecordComponent,
+    ReportsTransferComponent,
+    ReportsGetingComponent,
+    ReportsProductsComponent,
+    StorageRecordComponent,
+    StorageAddComponent,
+    StorageGetingComponent,
+    OrdersRecordComponent,
+    StorageTransferComponent,
+    ReportsMaterialsComponent,
     SettingsComponent,
+    SettingsColorsComponent,
+    SettingsPositionComponent,
+    SettingsPersonalComponent,
     PersonalComponent,
+    PersonalRecordComponent,
     ProductsComponent,
     MaterialComponent,
     UserProfileComponent,

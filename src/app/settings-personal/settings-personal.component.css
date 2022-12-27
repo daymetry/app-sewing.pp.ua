@@ -1,0 +1,13 @@
+.menu-order {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 15px;
+    max-width: 250px;
+}
+
+
+.h-30px {
+    height: 30px;
+}

@@ -2,9 +2,9 @@
   <div class="container-fluid">
       <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6 action-buttons">
-              <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>add_box</mat-icon> Добавить склад</button>
-              <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>add_shopping_cart</mat-icon> Получение</button>
-              <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>move_to_inbox</mat-icon> Перемещение</button>
+              <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/add'" mat-raised-button color="warning"><mat-icon>add_box</mat-icon> Добавить склад</button>
+              <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/geting'" mat-raised-button color="warning"><mat-icon>add_shopping_cart</mat-icon> Получение</button>
+              <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/transfer'" mat-raised-button color="warning"><mat-icon>move_to_inbox</mat-icon> Перемещение</button>
           </div>
           <div class="col-lg-9 col-md-6 col-sm-6">
 <!--              <div class="card card-stats">-->
@@ -53,8 +53,8 @@
                       <div class="stats card-footer-action">
 <!--                          <i class="material-icons">date_range</i> Last 24 Hours-->
 <!--                          <button style="margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning">Перейти к складу</button>-->
-                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к складу</button>
-                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage-edit/' + {{1}}" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать склад</button>
+                          <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/' + 1" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к складу</button>
+                          <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/edit/' + 1" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать склад</button>
 
 <!--                          <button routerLink="'/storage-edit/' + {{1}}" mat-raised-button color="primary">Редактировать склад</button>-->
                       </div>
@@ -74,8 +74,8 @@
                   <div class="card-footer">
                       <div class="stats card-footer-action">
 <!--                          <i class="material-icons">date_range</i> Last 24 Hours-->
-                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к складу</button>
-                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage-edit/' + {{1}}" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать склад</button>
+                          <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/' +1" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к складу</button>
+                          <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/edit/' + 1" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать склад</button>
                       </div>
                   </div>
               </div>

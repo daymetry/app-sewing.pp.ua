@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Добавить задачу</h1>
+<div mat-dialog-content>
+    <p>Название задачи</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Название задачи</mat-label>
+        <input matInput [(ngModel)]="item.name">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Тип задачи</mat-label>
+        <mat-select [(value)]="item.type">
+            <mat-option value="0">Общее</mat-option>
+            <mat-option value="1">Склад</mat-option>
+            <mat-option value="2">Работа</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Закрыть</button>
+    <button mat-button (click)="onSendClick()" cdkFocusInitial>Ok</button>
+</div>

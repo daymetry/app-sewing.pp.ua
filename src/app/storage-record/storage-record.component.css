@@ -1,0 +1,19 @@
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 15px;
+}
+
+
+@media screen and (max-width: 992px) {
+    .card-footer-action {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: 15px;
+    }
+}
+
