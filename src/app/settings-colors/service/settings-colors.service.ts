@@ -11,7 +11,8 @@ import {
 })
 export class SettingsColorsService {
 
-    public apiUrl = 'http://localhost:3000';
+    // public apiUrl = 'http://localhost:3000';
+    public apiUrl = 'http://app-sewing.pp.ua:3000';
     public headers = {
         headers: {
             'Content-Type': 'application/json',
