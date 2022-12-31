@@ -3,7 +3,7 @@
     <mat-form-field appearance="fill">
         <mat-label>Выбрать материал</mat-label>
         <mat-select [(value)]="item.materialid">
-            <mat-option *ngFor="let item of materialsItem" value="{{item.id}}">{{item.tittle}}</mat-option>
+            <mat-option *ngFor="let item of materialsItem" value="{{item.m_id}}">{{item.m_tittle}}</mat-option>
         </mat-select>
     </mat-form-field>
 
