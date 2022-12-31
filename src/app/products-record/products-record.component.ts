@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import {Router} from '@angular/router';
+import {ProductsRecordService} from './service/products-record.service'
+
 
 @Component({
   selector: 'app-products-record',
@@ -7,8 +10,12 @@ import * as Chartist from 'chartist';
   styleUrls: ['./products-record.component.css']
 })
 export class ProductsRecordComponent implements OnInit {
+    public queryString = window.location.href;
+    public queryIsString: any = false;
 
-  constructor() { }
+  constructor(private router: Router, private productsRecordService: ProductsRecordService) { }
+
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -66,6 +73,13 @@ export class ProductsRecordComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+
+      this.queryIsString = window.location.href.split('/')[window.location.href.split('/').length - 2];
+
+      console.log(this.queryIsString)
+
+
+
 
       console.log(1111)
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
@@ -148,5 +162,25 @@ export class ProductsRecordComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+
+
+    backLink() {
+        this.router.navigate(['/products'])
+    }
+
+
+    delOrder() {
+
+        console.log(this.queryString.split('/')[window.location.href.split('/').length - 1]);
+        this.productsRecordService.delProducts(this.queryString.split('/')[window.location.href.split('/').length - 1]).subscribe({
+            next: (data: any) => {
+                console.log(data)
+                this.router.navigate(['/products'])
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+    }
 
 }

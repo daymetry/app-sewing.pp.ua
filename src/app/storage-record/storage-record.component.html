@@ -1,6 +1,14 @@
 <div class="main-content">
   <div class="container-fluid">
       <div class="row">
+
+
+          <div class="col-lg-3 col-md-6 col-sm-6 action-buttons">
+              <button *ngIf="this.queryIsString === 'storage'" style="    text-align: left;margin-right: 5px;" (click)="backLink()" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Вернутся к складам</button>
+              <button *ngIf="this.queryIsString === 'edit'" style="    text-align: left;margin-right: 5px;" (click)="backLink()" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Вернутся к складам</button>
+              <button *ngIf="this.queryIsString === 'edit'" style="    text-align: left;margin-right: 5px;" (click)="delStorage()" mat-raised-button color="warning"><mat-icon>delete</mat-icon> Удалить склад</button>
+          </div>
+
 <!--          <div class="col-lg-3 col-md-6 col-sm-6 action-buttons">-->
 <!--              <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>add_box</mat-icon> Добавить склад</button>-->
 <!--              <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>add_shopping_cart</mat-icon> Получение</button>-->
@@ -36,50 +44,143 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--          </div>-->
+
+
       </div>
 
 
       <div class="row">
-<!--          <div class="col-lg-12 col-md-6 col-sm-6">-->
-<!--              <div class="card card-stats">-->
-<!--                  <div class="card-header card-header-success card-header-icon">-->
-<!--                      <div class="card-icon">-->
-<!--                          <i class="material-icons">store</i>-->
-<!--                      </div>-->
-<!--                      <p class="card-category">Склад</p>-->
-<!--                      <h3 class="card-title">Основной</h3>-->
-<!--                  </div>-->
-<!--                  <div class="card-footer">-->
-<!--                      <div class="stats card-footer-action">-->
-<!--&lt;!&ndash;                          <i class="material-icons">date_range</i> Last 24 Hours&ndash;&gt;-->
-<!--&lt;!&ndash;                          <button style="margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning">Перейти к складу</button>&ndash;&gt;-->
-<!--                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к складу</button>-->
-<!--                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage-edit/' + {{1}}" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать склад</button>-->
+          <div class="col-lg-12 col-md-12 col-sm-12 ">
 
-<!--&lt;!&ndash;                          <button routerLink="'/storage-edit/' + {{1}}" mat-raised-button color="primary">Редактировать склад</button>&ndash;&gt;-->
-<!--                      </div>-->
-<!--                  </div>-->
-<!--              </div>-->
-<!--          </div>-->
+              <div class="card">
+                  <div class="card-body">
+                      <p>Название скдала: {{storage.tittle}}</p>
+                      <p>Описание скдала: {{storage.description}}</p>
+                      <p>Имя заведуещего: {{storage.owner}}</p>
+                  </div>
+              </div>
+          </div>
 
-<!--          <div class="col-lg-12 col-md-6 col-sm-6" *ngFor="let item of storage">-->
-<!--              <div class="card card-stats">-->
-<!--                  <div class="card-header card-header-info card-header-icon">-->
-<!--                      <div class="card-icon">-->
-<!--                          <i class="material-icons">local_shipping</i>-->
-<!--                      </div>-->
-<!--                      <p class="card-category">Склад</p>-->
-<!--                      <h3 class="card-title">{{item.name}}</h3>-->
-<!--                  </div>-->
-<!--                  <div class="card-footer">-->
-<!--                      <div class="stats card-footer-action">-->
-<!--&lt;!&ndash;                          <i class="material-icons">date_range</i> Last 24 Hours&ndash;&gt;-->
-<!--                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage/' + {{1}}" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к складу</button>-->
-<!--                          <button style="    text-align: left;margin-right: 5px;" routerLink="'/storage-edit/' + {{1}}" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать склад</button>-->
-<!--                      </div>-->
-<!--                  </div>-->
-<!--              </div>-->
-<!--          </div>-->
+
+          <div *ngIf="this.queryIsString === 'storage'" class="col-lg-12 col-md-12 col-sm-12 ">
+              <div class="card">
+                  <div class="card-body">
+                      <h4>Материали</h4>
+
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                              <th>Артикуль</th>
+                              <th>Название</th>
+                              <th>Количество</th>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let item of materials">
+                              <td>{{item.m_in_id}}</td>
+                              <td>{{item.m_tittle}}</td>
+                              <td>{{item.smp_count}} кг</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+          <div *ngIf="this.queryIsString === 'storage'" class="col-lg-12 col-md-12 col-sm-12 ">
+              <div class="card">
+                  <div class="card-body">
+                      <h4>Продукция</h4>
+
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                              <th>Артикуль</th>
+                              <th>Название</th>
+                              <th>Количество</th>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let item of products">
+                              <td>{{item.p_in_id}}</td>
+                              <td>{{item.p_name}}</td>
+                              <td>{{item.smp_count}} кг</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+          <div *ngIf="this.queryIsString === 'edit'" class="col-lg-3 col-md-3 col-sm-12 action-buttons">
+              <button  (click)="openDialogMaterial()" style=" text-align: left;margin-right: 5px;"  mat-raised-button color="warning"><mat-icon>add_box</mat-icon> Добавить материал</button>
+          </div>
+
+          <div *ngIf="this.queryIsString === 'edit'" class="col-lg-12 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-warning">
+                      <h4 class="card-title">Материали</h4>
+                      <!--                      <p class="card-category">New employees on 15th September, 2016</p>-->
+                  </div>
+                  <div class="card-body table-responsive">
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                          <th>Артикуль</th>
+                          <th>Название</th>
+<!--                          <th>Цвет</th>-->
+                          <th>Количество</th>
+                          <th style="text-align:right">Меню</th>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let item of materials">
+                              <td>{{item.m_in_id}}</td>
+                              <td>{{item.m_tittle}}</td>
+<!--                              <td>{{item.color}}</td>-->
+                              <td>{{item.smp_count}} кг</td>
+                              <td style="text-align:right;" class="card-footer-action">
+                                  <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/material/' + item.m_id" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к материалу</button>
+                                  <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/storage-edit-material/' + item.smp_id" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать материал на складе</button>
+                              </td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+          <div *ngIf="this.queryIsString === 'edit'" class="col-lg-3 col-md-3 col-sm-12 action-buttons">
+              <button (click)="openDialogProducts()" style=" text-align: left;margin-right: 5px;"  mat-raised-button color="warning"><mat-icon>add_box</mat-icon> Добавить продук</button>
+          </div>
+
+          <div *ngIf="this.queryIsString === 'edit'" class="col-lg-12 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-warning">
+                      <h4 class="card-title">Продукция</h4>
+                      <!--                      <p class="card-category">New employees on 15th September, 2016</p>-->
+                  </div>
+                  <div class="card-body table-responsive">
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                          <th>Артикуль</th>
+                          <th>Название</th>
+                          <th>Количество</th>
+                          <th style="text-align:right">Меню</th>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let item of products">
+
+                              <td>{{item.p_in_id}}</td>
+                              <td>{{item.p_name}}</td>
+                              <td>{{item.smp_count}} кг</td>
+                              <td style="text-align:right;" class="card-footer-action">
+                                  <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/products/' + item.p_id" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к продукту</button>
+                                  <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/storage/storage-edit-product/' + item.smp_id" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать изделие на складе</button>
+                              </td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
       </div>
       <div class="row">
 <!--          <div class="col-md-4">-->

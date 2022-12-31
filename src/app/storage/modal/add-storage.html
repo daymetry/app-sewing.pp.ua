@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Добавить склад</h1>
+<div mat-dialog-content>
+    <p>Название склада</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Название склада</mat-label>
+        <input matInput [(ngModel)]="item.tittle">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Описание склада</mat-label>
+        <input matInput [(ngModel)]="item.description">
+    </mat-form-field>
+
+<!--    <mat-form-field appearance="fill">-->
+<!--        <mat-label>Выберете дату выполнения заказа</mat-label>-->
+<!--        <input matInput [matDatepicker]="picker">-->
+<!--        <mat-hint>MM/DD/YYYY</mat-hint>-->
+<!--        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker></mat-datepicker>-->
+<!--    </mat-form-field>-->
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Закрыть</button>
+    <button mat-button (click)="onSendClick()" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Добавить материал</h1>
+<div mat-dialog-content>
+    <p>Артикуль</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Артикуль</mat-label>
+        <input matInput [(ngModel)]="item.inid">
+    </mat-form-field>
+
+
+    <p>Название материала</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Название материала</mat-label>
+        <input matInput [(ngModel)]="item.tittle">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Цвет</mat-label>
+        <mat-select [(value)]="item.color">
+            <mat-option *ngFor="let item of colorItem" value="{{item.id}}">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+<!--    <mat-form-field appearance="fill">-->
+<!--        <mat-label>Выберете дату выполнения заказа</mat-label>-->
+<!--        <input matInput [matDatepicker]="picker">-->
+<!--        <mat-hint>MM/DD/YYYY</mat-hint>-->
+<!--        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker></mat-datepicker>-->
+<!--    </mat-form-field>-->
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Закрыть</button>
+    <button mat-button (click)="onSendClick()" cdkFocusInitial>Ok</button>
+</div>

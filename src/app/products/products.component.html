@@ -1,5 +1,11 @@
 <div class="main-content">
   <div class="container-fluid">
+
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-12 action-buttons">
+              <button style="    text-align: left;margin-right: 5px;" (click)="openDialog()" mat-raised-button color="warning"><mat-icon>add_box</mat-icon> Добавить изделия</button>
+          </div>
+      </div>
 <!--      <div class="row">-->
 <!--          <div class="col-lg-3 col-md-6 col-sm-6">-->
 <!--              <div class="card card-stats">-->
@@ -378,20 +384,24 @@
                           <thead class="text-warning">
                               <th>Артикуль</th>
                               <th>Название</th>
+                              <th>Описание</th>
+                              <th>Цвет</th>
                               <th>Материалы</th>
                               <th style="text-align:right">Меню</th>
                           </thead>
                           <tbody>
-                              <tr>
-                                  <td>43245</td>
-                                  <td>Куртка</td>
-                                  <td>4 ед.</td>
+                              <tr *ngFor="let item of productItems">
+                                  <td>{{item.p_in_id}}</td>
+                                  <td>{{item.p_name}}</td>
+                                  <td>{{item.p_description}}</td>
+                                  <td>{{item.c_name}}</td>
+                                  <td>{{item.p_materials}} ед.</td>
                                   <td style="text-align:right;" class="card-footer-action">
 <!--                                      <button style="margin-right: 5px;" routerLink="'/products/' + {{1}}" mat-raised-button color="warning">Перейти к изделию</button>-->
 <!--                                      <button routerLink="'/products-edit/' + {{1}}" mat-raised-button color="primary">Редактировать изделие</button>-->
 
-                                      <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/products/' + 1" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к изделию</button>
-                                      <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/products/edit/' + 1" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать изделие</button>
+                                      <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/products/' + item.p_id" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к изделию</button>
+                                      <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/products/edit/' + item.p_id" mat-raised-button color="primary"><mat-icon>edit</mat-icon> Редактировать изделие</button>
                                   </td>
                               </tr>
                           </tbody>

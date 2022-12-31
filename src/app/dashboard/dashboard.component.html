@@ -163,7 +163,7 @@
                                           <td>
                                               <div class="form-check">
                                                   <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="" [checked]="!!item.isdone">
+                                                      <input class="form-check-input" type="checkbox" value="" (change)="checked({name: 'all', item: item})" [checked]="!!item.isdone">
                                                       <span class="form-check-sign">
                                                           <span class="check"></span>
                                                       </span>
@@ -173,7 +173,7 @@
                                           <td>{{item.description}}</td>
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Удалить" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons"  (click)="delAll(item)">close</i>
+                                                  <i class="material-icons"  (click)="delTasks(item)">close</i>
                                               </button>
                                           </td>
                                       </tr>
@@ -187,7 +187,7 @@
                                           <td>
                                               <div class="form-check">
                                                   <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="" [checked]="!!item.isdone">
+                                                      <input class="form-check-input" type="checkbox" value="" (change)="checked({name: 'storage', item: item})" [checked]="!!item.isdone">
                                                       <span class="form-check-sign">
                                                           <span class="check"></span>
                                                       </span>
@@ -197,7 +197,7 @@
                                           <td>{{item.description}}</td>
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Удалить" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons" (click)="delStorage(item)">close</i>
+                                                  <i class="material-icons" (click)="delTasks(item)">close</i>
                                               </button>
                                           </td>
                                       </tr>
@@ -211,7 +211,7 @@
                                           <td>
                                               <div class="form-check">
                                                   <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="" [checked]="!!item.isdone">
+                                                      <input class="form-check-input" type="checkbox" value="" (change)="checked({name: 'work', item: item})" [checked]="!!item.isdone">
                                                       <span class="form-check-sign">
                                                           <span class="check"></span>
                                                       </span>
@@ -221,7 +221,7 @@
                                           <td>{{item.description}}</td>
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Удалить" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                                                  <i class="material-icons" (click)="delWork(item)">close</i>
+                                                  <i class="material-icons" (click)="delTasks(item)">close</i>
                                               </button>
                                           </td>
                                       </tr>
@@ -246,40 +246,12 @@
                               <th>Ссылка</th>
                           </thead>
                           <tbody>
-                              <tr>
-                                  <td>Склад #1 материал меньше нуля</td>
-                                  <td>Просмотрите отчет за 01-01-2023</td>
-                                  <td>
-<!--                                      <button style="text-align: left;margin-right: 5px;" [routerLink]="'/reports'" mat-raised-button color="warning">-->
-<!--                                          <mat-icon class="icon-dashboard">open_in_new</mat-icon>-->
-<!--                                          Перейти к отчетам-->
-<!--                                      </button>-->
-                                      <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/reports'" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к отчетам</button>
-
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>Склад #1 материал меньше нуля</td>
-                                  <td>Просмотрите отчет за 01-01-2023 до 05-01-2023</td>
+                              <tr *ngFor="let item of item.notificationList">
+                                  <td>{{item.tittle}}</td>
+                                  <td>{{item.description}}</td>
                                   <td>
                                       <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/reports'" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к отчетам</button>
-
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>Склад #2 материал меньше нуля</td>
-                                  <td>Просмотрите отчет за 01-02-2023</td>
-                                  <td>
-                                      <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/reports'" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к отчетам</button>
-
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>Склад #1 материал меньше нуля</td>
-                                  <td>Просмотрите отчет за 01-02-2023</td>
-                                  <td>
-                                      <button style="    text-align: left;margin-right: 5px;" [routerLink]="'/reports'" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Перейти к отчетам</button>
-
+                                      <button style="    text-align: left;margin-right: 5px;" (click)="delNotification(item.id)" mat-raised-button color="warning"><i class="material-icons">close</i> Удалить</button>
                                   </td>
                               </tr>
                           </tbody>

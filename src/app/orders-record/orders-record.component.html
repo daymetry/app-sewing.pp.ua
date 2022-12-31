@@ -122,7 +122,11 @@
         <!--      </div>-->
 
         <div class="row">
-
+            <div class="col-lg-12 col-md-12 col-sm-12 action-buttons">
+                <button *ngIf="this.queryIsString === 'orders'" style="    text-align: left;margin-right: 5px;" (click)="backLink()" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Вернутся к заказам</button>
+                <button *ngIf="this.queryIsString === 'edit'" style="    text-align: left;margin-right: 5px;" (click)="backLink()" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Вернутся к заказам</button>
+                <button *ngIf="this.queryIsString === 'edit'" style="    text-align: left;margin-right: 5px;" (click)="delOrder()" mat-raised-button color="warning"><mat-icon>delete</mat-icon> Удалить заказ</button>
+            </div>
 <!--            <div class="col-lg-12 col-md-12">-->
 <!--                <div class="card">-->
 <!--                    <div class="card-header card-header-warning">-->

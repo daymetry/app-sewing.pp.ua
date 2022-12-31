@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import {Router} from '@angular/router';
+
+import {MaterialRecordService} from './service/material-record.service';
 
 @Component({
   selector: 'app-material-record',
@@ -7,199 +10,79 @@ import * as Chartist from 'chartist';
   styleUrls: ['./material-record.component.css']
 })
 export class MaterialRecordComponent implements OnInit {
+    public queryString = window.location.href;
+    public queryIsString: any = false;
 
-    public materials: any[] = [
-        {
-            id: 5364,
-            name: 'Полушерсть',
-            color: 'Чёрный',
-            weight: 23
-        },
-        {
-            id: 7578,
-            name: 'Шерсть',
-            color: 'Чёрный',
-            weight: 43
-        },
-        {
-            id: 7534,
-            name: 'Кашемир 100%',
-            color: 'Чёрный',
-            weight: 65
-        },
-        {
-            id: 6457,
-            name: 'Кашемир 30%/70%',
-            color: 'Чёрный',
-            weight: 87
-        },
-        {
-            id: 5324,
-            name: 'Кашемир 50%/50%',
-            color: 'Чёрный',
-            weight: 76
-        },
-        {
-            id: 2346,
-            name: 'Хлопок',
-            color: 'Чёрный',
-            weight: 33
-        },
-        {
-            id: 8666,
-            name: 'Вискоза',
-            color: 'Чёрный',
-            weight: 43
-        },
-        {
-            id: 6578,
-            name: 'Люрекс',
-            color: 'Чёрный',
-            weight: 86
-        },
-        {
-            id: 3456,
-            name: 'Стрейч',
-            color: 'Чёрный',
-            weight: 86
-        },
-        {
-            id: 3567,
-            name: 'Хлопок / вискоза',
-            color: 'Чёрный',
-            weight: 34
-        },
-        {
-            id: 8788,
-            name: 'Хлопок / акрил',
-            color: 'Чёрный',
-            weight: 76
-        },
-        {
-            id: 2346,
-            name: 'Полушерсть',
-            color: 'Чёрный',
-            weight: 23
-        },
-        {
-            id: 8675,
-            name: 'Шерсть',
-            color: 'Чёрный',
-            weight: 43
-        },
-        {
-            id: 3468,
-            name: 'Кашемир 100%',
-            color: 'Чёрный',
-            weight: 65
-        },
-        {
-            id: 7589,
-            name: 'Кашемир 30%/70%',
-            color: 'Чёрный',
-            weight: 87
-        },
-        {
-            id: 3467,
-            name: 'Кашемир 50%/50%',
-            color: 'Чёрный',
-            weight: 76
-        },
-        {
-            id: 3567,
-            name: 'Хлопок',
-            color: 'Чёрный',
-            weight: 33
-        },
-        {
-            id: 2357,
-            name: 'Вискоза',
-            color: 'Хаки',
-            weight: 43
-        },
-        {
-            id: 1235,
-            name: 'Люрекс',
-            color: 'Розовий',
-            weight: 86
-        },
-        {
-            id: 8964,
-            name: 'Стрейч',
-            color: 'Тёмно серый',
-            weight: 86
-        },
-        {
-            id: 6478,
-            name: 'Хлопок / вискоза',
-            color: 'беж',
-            weight: 34
-        },
-        {
-            id: 8567,
-            name: 'Хлопок / акрил',
-            color: 'Молочный',
-            weight: 76
-        }
-    ]
-  constructor() { }
-  startAnimationForLineChart(chart){
-      let seq: any, delays: any, durations: any;
-      seq = 0;
-      delays = 80;
-      durations = 500;
+    public materials: any[] = []
 
-      chart.on('draw', function(data) {
-        if(data.type === 'line' || data.type === 'area') {
-          data.element.animate({
-            d: {
-              begin: 600,
-              dur: 700,
-              from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-              to: data.path.clone().stringify(),
-              easing: Chartist.Svg.Easing.easeOutQuint
-            }
-          });
-        } else if(data.type === 'point') {
-              seq++;
+    constructor(private router: Router, private materialRecordService: MaterialRecordService) { }
+
+    startAnimationForLineChart(chart){
+          let seq: any, delays: any, durations: any;
+          seq = 0;
+          delays = 80;
+          durations = 500;
+
+          chart.on('draw', function(data) {
+            if(data.type === 'line' || data.type === 'area') {
               data.element.animate({
-                opacity: {
-                  begin: seq * delays,
-                  dur: durations,
-                  from: 0,
-                  to: 1,
-                  easing: 'ease'
+                d: {
+                  begin: 600,
+                  dur: 700,
+                  from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                  to: data.path.clone().stringify(),
+                  easing: Chartist.Svg.Easing.easeOutQuint
                 }
               });
-          }
-      });
-
-      seq = 0;
-  };
-  startAnimationForBarChart(chart){
-      let seq2: any, delays2: any, durations2: any;
-
-      seq2 = 0;
-      delays2 = 80;
-      durations2 = 500;
-      chart.on('draw', function(data) {
-        if(data.type === 'bar'){
-            seq2++;
-            data.element.animate({
-              opacity: {
-                begin: seq2 * delays2,
-                dur: durations2,
-                from: 0,
-                to: 1,
-                easing: 'ease'
+            } else if(data.type === 'point') {
+                  seq++;
+                  data.element.animate({
+                    opacity: {
+                      begin: seq * delays,
+                      dur: durations,
+                      from: 0,
+                      to: 1,
+                      easing: 'ease'
+                    }
+                  });
               }
-            });
-        }
-      });
+          });
 
-      seq2 = 0;
-  };
-  ngOnInit() {
+          seq = 0;
+      };
+    startAnimationForBarChart(chart){
+          let seq2: any, delays2: any, durations2: any;
+
+          seq2 = 0;
+          delays2 = 80;
+          durations2 = 500;
+          chart.on('draw', function(data) {
+            if(data.type === 'bar'){
+                seq2++;
+                data.element.animate({
+                  opacity: {
+                    begin: seq2 * delays2,
+                    dur: durations2,
+                    from: 0,
+                    to: 1,
+                    easing: 'ease'
+                  }
+                });
+            }
+          });
+
+          seq2 = 0;
+      };
+
+    ngOnInit() {
+
+      this.queryIsString = window.location.href.split('/')[window.location.href.split('/').length - 2];
+
+
+      console.log(this.queryIsString)
+
+
+
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {
@@ -280,5 +163,25 @@ export class MaterialRecordComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+
+
+    backLink() {
+        this.router.navigate(['/material'])
+    }
+
+    delMaterial() {
+
+        console.log(this.queryString.split('/')[window.location.href.split('/').length - 1]);
+        this.materialRecordService.delMaterials(this.queryString.split('/')[window.location.href.split('/').length - 1]).subscribe({
+            next: (data: any) => {
+                console.log(data)
+                // this.router.navigate(['/storage'])
+                this.router.navigate(['/material'])
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+    }
 
 }

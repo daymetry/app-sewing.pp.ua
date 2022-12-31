@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import {ModalAddOrders} from '../orders/modal/add-orders';
+import {MatDialog} from '@angular/material/dialog';
+import * as moment from 'moment/moment';
+import {Router} from '@angular/router';
+
+import {StorageService} from './service/storage.service'
+import {ModalAddStorage} from './modal/add-storage';
 
 @Component({
   selector: 'app-storage',
@@ -7,8 +14,10 @@ import * as Chartist from 'chartist';
   styleUrls: ['./storage.component.css']
 })
 export class StorageComponent implements OnInit {
+    public queryString = window.location.href;
+    public queryIsString: any = false;
 
-    public storage: any[] = [
+    public storage: any = [
         {
             id: 1,
             name: 'Карпенко И.',
@@ -31,7 +40,23 @@ export class StorageComponent implements OnInit {
 
     public graff: any = {}
 
-  constructor() { }
+  constructor(public dialog: MatDialog, private storageService: StorageService, private router: Router) { }
+
+    openDialog(): void {
+
+        const dialogRef = this.dialog.open(ModalAddStorage, {
+            data: {},
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+
+            this.getStorage();
+        });
+
+    }
+
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -89,6 +114,7 @@ export class StorageComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+      this.getStorage();
 
       this.storage.map((res: any) => {
           if (!this.graff[res.name]) {
@@ -258,4 +284,21 @@ export class StorageComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+
+
+    getStorage() {
+        this.storageService.getStorage().subscribe({
+            next: (data: any) => {
+                console.log(data)
+
+                this.storage = data;
+
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+    }
+
+
 }

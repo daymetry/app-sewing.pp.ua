@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import {ModalAddOrders} from './modal/add-orders';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
+import { OrdersService } from './service/orders.service'
+import * as moment from 'moment';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -8,30 +12,29 @@ import * as Chartist from 'chartist';
 })
 export class OrdersComponent implements OnInit {
 
-    public storage: any[] = [
-        {
-            id: 1,
-            name: 'Карпенко И.',
-            materials: 10,
-            products: 89
-        },
-        {
-            id: 2,
-            name: 'Михеев А.',
-            materials: 425,
-            products: 20
-        },
-        {
-            id: 3,
-            name: 'Онуфрий',
-            materials: 242,
-            products: 12
-        }
+    public item: any = [
     ];
+
+    public picker = '';
 
     public graff: any = {}
 
-  constructor() { }
+  constructor(public dialog: MatDialog, private ordersService: OrdersService) { }
+
+    openDialog(): void {
+
+        const dialogRef = this.dialog.open(ModalAddOrders, {
+            data: {},
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+
+            this.getOrders();
+        });
+
+    }
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -90,35 +93,19 @@ export class OrdersComponent implements OnInit {
   };
   ngOnInit() {
 
-      this.storage.map((res: any) => {
-          if (!this.graff[res.name]) {
-              this.graff[res.name] = {};
-              this.graff[res.name].materials = res.materials;
-              this.graff[res.name].products = res.products;
-          } else {
-              this.graff[res.name] = {};
-              this.graff[res.name].materials = this.graff[res.name].materials + res.materials;
-              this.graff[res.name].products = this.graff[res.name].products + res.products;
-          }
-      })
+      this.getOrders();
+      // this.storage.map((res: any) => {
+      //     if (!this.graff[res.name]) {
+      //         this.graff[res.name] = {};
+      //         this.graff[res.name].materials = res.materials;
+      //         this.graff[res.name].products = res.products;
+      //     } else {
+      //         this.graff[res.name] = {};
+      //         this.graff[res.name].materials = this.graff[res.name].materials + res.materials;
+      //         this.graff[res.name].products = this.graff[res.name].products + res.products;
+      //     }
+      // })
 
-      console.log([
-          ...Object.keys(this.graff).map((res: any) => {
-              return this.graff[res].materials;
-          }),
-          ...Object.keys(this.graff).map((res: any) => {
-              return this.graff[res].products;
-          }),
-      ])
-
-      console.log([
-          ...Object.keys(this.graff).map((res: any) => {
-              return res  + ' материал';
-          }),
-          ...Object.keys(this.graff).map((res: any) => {
-              return res  + ' изделия';
-          })
-      ])
 
       const dataDailySalesChart: any = {
           labels:
@@ -258,4 +245,37 @@ export class OrdersComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+
+    getOrders() {
+        this.ordersService.getOrders().subscribe({
+            next: (data: any) => {
+                console.log(data)
+
+                this.item = [];
+                for (const itemO of data) {
+                    console.log(itemO.date_deadline)
+                    console.log(moment(itemO.date_deadline, 'YYYY-MM-DD').add(1, 'day').format('DD.MM.YYYY'))
+
+                    itemO.date_deadline = moment(itemO.date_deadline, 'YYYY-MM-DD').add(1, 'day').format('DD.MM.YYYY')
+                    this.item.push(itemO)
+                }
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+    }
+
+    checked(item: any) {
+        this.ordersService.putOrders(item).subscribe({
+            next: (data: any) => {
+                console.log(data)
+
+               this.getOrders();
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+    }
 }

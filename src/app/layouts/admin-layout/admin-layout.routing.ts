@@ -29,6 +29,9 @@ import {MaterialRecordComponent} from '../../material-record/material-record.com
 import {StorageRecordComponent} from '../../storage-record/storage-record.component';
 import {OrdersRecordComponent} from '../../orders-record/orders-record.component';
 import {SettingsPositionComponent} from '../../settings-position/settings-position.component';
+import {StorageGetingComponent} from '../../storage-geting/storage-geting.component';
+import {StorageTransferComponent} from '../../storage-transfer/storage-transfer.component';
+import {StorageRecordItemsComponent} from '../../storage-record-items/storage-record-items.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -78,8 +81,12 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'orders/:id',   component: OrdersRecordComponent },
     { path: 'orders/edit/:id',   component: OrdersRecordComponent },
     { path: 'storage',   component: StorageComponent },
-    { path: 'storage/:id',   component: StorageRecordComponent },
+    { path: 'storage/geting',   component: StorageGetingComponent },
+    { path: 'storage/transfer',   component: StorageTransferComponent },
     { path: 'storage/edit/:id',   component: StorageRecordComponent },
+    { path: 'storage/:id',   component: StorageRecordComponent },
+
+
     { path: 'settings',   component: SettingsComponent },
     { path: 'settings/color',   component: SettingsColorsComponent },
     { path: 'settings/position',   component: SettingsPositionComponent },
@@ -89,9 +96,11 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'material',   component: MaterialComponent },
     { path: 'material/:id',   component: MaterialRecordComponent },
     { path: 'material/edit/:id',   component: MaterialRecordComponent },
+    { path: 'storage/storage-edit-material/:id',   component: StorageRecordItemsComponent },
     { path: 'products',   component: ProductsComponent },
     { path: 'products/:id',   component: ProductsRecordComponent },
     { path: 'products/edit/:id',   component: ProductsRecordComponent },
+    { path: 'storage/storage-edit-product/:id',   component: StorageRecordItemsComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },

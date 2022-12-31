@@ -37,10 +37,38 @@ export class DashboardService {
         return this.http.get(`${this.apiUrl}/tasks`, this.headers);
     }
 
+    getNotifications() {
+
+        console.log(`${this.apiUrl}/notifications`)
+        return this.http.get(`${this.apiUrl}/notifications`, this.headers);
+    }
+
+    delNotifications(item: any) {
+
+        console.log(`${this.apiUrl}/notifications`)
+        return this.http.delete(`${this.apiUrl}/notifications/${item}`, this.headers);
+    }
+
     // Update
     postTask(data: any): Observable<any> {
         return this.http
             .post(`${this.apiUrl}/tasks`, data, this.headers)
+            .pipe(catchError(this.error));
+    }
+
+    // Update
+    delTask(data: any): Observable<any> {
+        return this.http
+            .delete(`${this.apiUrl}/tasks/${data.id}`, data)
+            .pipe(catchError(this.error));
+    }
+
+    // Update
+    putTask(data: any): Observable<any> {
+
+        console.log(data)
+        return this.http
+            .put(`${this.apiUrl}/tasks`, data, this.headers)
             .pipe(catchError(this.error));
     }
 

@@ -1,5 +1,13 @@
 <div class="main-content">
   <div class="container-fluid">
+
+      <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-12 action-buttons">
+              <button *ngIf="this.queryIsString === 'products'" style="    text-align: left;margin-right: 5px;" (click)="backLink()" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Вернутся к изделиям</button>
+              <button *ngIf="this.queryIsString === 'edit'" style="    text-align: left;margin-right: 5px;" (click)="backLink()" mat-raised-button color="warning"><mat-icon>open_in_new</mat-icon> Вернутся к изделиям</button>
+              <button *ngIf="this.queryIsString === 'edit'" style="    text-align: left;margin-right: 5px;" (click)="delOrder()" mat-raised-button color="warning"><mat-icon>delete</mat-icon> Удалить изделие</button>
+          </div>
+      </div>
 <!--      <div class="row">-->
 <!--          <div class="col-lg-3 col-md-6 col-sm-6">-->
 <!--              <div class="card card-stats">-->

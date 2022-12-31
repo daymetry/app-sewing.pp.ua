@@ -1,4 +1,10 @@
-
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 15px;
+}
 @media screen and (max-width: 1189px) {
     .card-footer-action {
         display: flex;

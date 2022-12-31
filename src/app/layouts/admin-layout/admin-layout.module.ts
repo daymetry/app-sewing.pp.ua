@@ -44,28 +44,44 @@ import {OrdersRecordComponent} from '../../orders-record/orders-record.component
 import {SettingsPositionComponent} from '../../settings-position/settings-position.component';
 import {ModalAddTask} from '../../dashboard/modal/add-task';
 import {MatDialogModule} from '@angular/material/dialog';
+import {ModalAddOrders} from '../../orders/modal/add-orders';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {ModalAddStorage} from '../../storage/modal/add-storage';
+import {ModalAddMaterialStorage} from '../../storage-record/modal/add-material-storage';
+import {ModalAddProductsStorage} from '../../storage-record/modal/add-products-storage';
+import {StorageRecordItemsComponent} from '../../storage-record-items/storage-record-items.component';
+import {ModalAddMaterial} from '../../material/modal/add-material';
+import {ModalAddProductsList} from '../../products/modal/add-products-list';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
-    MatIconModule,
-    MatDialogModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatDialogModule,
+        MatDatepickerModule,
+    ],
   declarations: [
     DashboardComponent,
     ModalAddTask,
+    ModalAddOrders,
+      ModalAddMaterialStorage,
+      ModalAddProductsStorage,
+      ModalAddProductsList,
+      StorageRecordItemsComponent,
+  ModalAddStorage,
     OrdersComponent,
     StorageComponent,
     ReportsComponent,
+      ModalAddMaterial,
     ReportsSalaryComponent,
     ReportsRentComponent,
     MaterialRecordComponent,

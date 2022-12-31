@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-reports-materials',
   templateUrl: './reports-materials.component.html',
@@ -8,7 +8,8 @@ import * as Chartist from 'chartist';
 })
 export class ReportsMaterialsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -42,6 +43,7 @@ export class ReportsMaterialsComponent implements OnInit {
 
       seq = 0;
   };
+
   startAnimationForBarChart(chart){
       let seq2: any, delays2: any, durations2: any;
 
@@ -65,9 +67,9 @@ export class ReportsMaterialsComponent implements OnInit {
 
       seq2 = 0;
   };
+
   ngOnInit() {
 
-      console.log(1111)
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {

@@ -7,31 +7,14 @@ import * as Chartist from 'chartist';
   styleUrls: ['./storage-geting.component.css']
 })
 export class StorageGetingComponent implements OnInit {
+    public queryString = window.location.href;
+    public queryIsString: any = false;
 
-    public storage: any[] = [
-        {
-            id: 1,
-            name: 'Карпенко И.',
-            materials: 10,
-            products: 89
-        },
-        {
-            id: 2,
-            name: 'Михеев А.',
-            materials: 425,
-            products: 20
-        },
-        {
-            id: 3,
-            name: 'Онуфрий',
-            materials: 242,
-            products: 12
-        }
-    ];
-
+    public storage: any[] = [];
     public graff: any = {}
 
   constructor() { }
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;

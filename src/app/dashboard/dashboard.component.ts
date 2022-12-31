@@ -54,22 +54,34 @@ export class DashboardComponent implements OnInit {
     }
 
 
+    delTasks(item: any) {
+        this.dashboardService.delTask(item).subscribe({
+            next: data => {
+                console.log(data)
+                this.getTasks();
 
-    delAll(item: any) {
-        this.notes.all = this.notes.all.filter((res: any) => {
-            return res !== item
-        });
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
     }
-    delStorage(item: any) {
-        this.notes.storage = this.notes.storage.filter((res: any) => {
-            return res !== item
-        });
+
+    delNotification(item: any) {
+        console.log(item)
+
+        this.dashboardService.delNotifications(item).subscribe({
+            next: data => {
+                console.log(data)
+                this.getNotifications();
+
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
     }
-    delWork(item: any) {
-        this.notes.work = this.notes.work.filter((res: any) => {
-            return res !== item
-        });
-    }
+
 
   startAnimationForLineChart(chart) {
       let seq: any, delays: any, durations: any;
@@ -132,6 +144,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
       this.getTasks();
+      this.getNotifications();
 
 
 
@@ -248,6 +261,34 @@ export class DashboardComponent implements OnInit {
             }
         })
   }
+  getNotifications() {
+        this.dashboardService.getNotifications().subscribe({
+            next: data => {
+                console.log(data)
+                this.item.notificationList = data;
 
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+  }
+
+
+    checked(item: any) {
+      console.log(item)
+      console.log(this.item)
+
+        this.dashboardService.putTask(item).subscribe({
+            next: data => {
+                console.log(data)
+                this.getTasks();
+
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+    }
 
 }

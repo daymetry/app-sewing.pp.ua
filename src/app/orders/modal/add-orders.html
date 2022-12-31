@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Добавить Заказ</h1>
+<div mat-dialog-content>
+    <p>Название заказа</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Название заказа</mat-label>
+        <input matInput [(ngModel)]="item.tittle">
+    </mat-form-field>
+
+    <p>Описание заказа</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Описание заказа</mat-label>
+        <input matInput [(ngModel)]="item.description">
+    </mat-form-field>
+
+    <p>Имя заказщика</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Имя заказщика</mat-label>
+        <input matInput [(ngModel)]="item.customer">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Цвет</mat-label>
+        <mat-select [(value)]="item.color">
+            <mat-option *ngFor="let item of colorItem" value="{{item.id}}">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Выбрать изделие</mat-label>
+        <mat-select [(value)]="item.prod">
+            <mat-option *ngFor="let item of prodItem" value="{{item.id}}">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <p>Количество</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Количество</mat-label>
+        <input matInput [(ngModel)]="item.count">
+    </mat-form-field>
+
+    <p>Дата выполнения заказа</p>
+    <mat-form-field appearance="fill">
+        <mat-label>ДД.ММ.ГГГГ</mat-label>
+        <input matInput (keyup)="formateData()" [(ngModel)]="item.deadline">
+    </mat-form-field>
+<!--    <mat-form-field appearance="fill">-->
+<!--        <mat-label>Выберете дату выполнения заказа</mat-label>-->
+<!--        <input matInput [matDatepicker]="picker">-->
+<!--        <mat-hint>MM/DD/YYYY</mat-hint>-->
+<!--        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker></mat-datepicker>-->
+<!--    </mat-form-field>-->
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Закрыть</button>
+    <button mat-button (click)="onSendClick()" cdkFocusInitial>Ok</button>
+</div>

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
-
+import {OrdersRecordService} from './service/orders-record.service'
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-orders-record',
   templateUrl: './orders-record.component.html',
   styleUrls: ['./orders-record.component.css']
 })
 export class OrdersRecordComponent implements OnInit {
+    public queryString = window.location.href;
+    public queryIsString: any = false;
 
     public storage: any[] = [
         {
@@ -31,8 +34,8 @@ export class OrdersRecordComponent implements OnInit {
 
     public graff: any = {}
 
-  constructor() { }
-  startAnimationForLineChart(chart){
+  constructor(private ordersRecordService: OrdersRecordService, private router: Router) { }
+  startAnimationForLineChart(chart) {
       let seq: any, delays: any, durations: any;
       seq = 0;
       delays = 80;
@@ -89,6 +92,10 @@ export class OrdersRecordComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+
+      this.queryIsString = window.location.href.split('/')[window.location.href.split('/').length - 2];
+
+      console.log(this.queryIsString)
 
       this.storage.map((res: any) => {
           if (!this.graff[res.name]) {
@@ -258,4 +265,23 @@ export class OrdersRecordComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
+
+
+    delOrder() {
+
+        console.log(this.queryString.split('/')[window.location.href.split('/').length - 1]);
+        this.ordersRecordService.delOrders(this.queryString.split('/')[window.location.href.split('/').length - 1]).subscribe({
+            next: (data: any) => {
+                console.log(data)
+                this.router.navigate(['/orders'])
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+    }
+
+    backLink() {
+        this.router.navigate(['/orders'])
+    }
 }
